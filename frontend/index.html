@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Data Analysis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload CSV and Analyze Data</h1>
+        <form id="upload-form">
+            <input type="file" id="csv-file" name="file" accept=".csv" required>
+            <button type="submit">Upload</button>
+        </form>
+        <div id="analysis">
+            <h2>Query Data</h2>
+            <input type="text" id="filter-key" placeholder="Enter filter key (e.g., Name)">
+            <input type="text" id="filter-value" placeholder="Enter filter value (e.g., Halo)">
+            <button onclick="queryData()">Query</button>
+        </div>
+        <div id="results"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

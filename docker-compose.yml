@@ -1,6 +1,55 @@
-version: '3'
+# version: '3'
+# services:
+#   backend:
+#     build: .
+#     ports:
+#       - "5000:5000"
+#     volumes:
+#       - ./game_data.db:/app/game_data.db
+#     environment:
+#       - DATABASE_URI=sqlite:///game_data.db
+
+#   frontend:
+#     build:
+#       context: ./frontend
+#     ports:
+#       - "80:80"
+
+#   database:
+#     build:
+#       context: .
+#       dockerfile: sqlite-docker/Dockerfile
+#     volumes:
+#       - ./game_data.db:/data/game_data.db
+
+
+version: '3.8'
+
 services:
-  web:
-    build: .
+  backend:
+    build:
+      context: .
     ports:
-      - "80:5000"
+      - "5000:5000"
+    volumes:
+      - ./game_data.db:/app/game_data.db
+    environment:
+      - DATABASE_URI=sqlite:///game_data.db
+    depends_on:
+      - database
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  database:
+    build:
+      context: ./sqlite-docker
+    volumes:
+      - ./game_data.db:/data/game_data.db
+
+
